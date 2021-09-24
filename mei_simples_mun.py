@@ -10,7 +10,7 @@ import psycopg2
 from sqlalchemy import create_engine
 import pandas as pd
 # ## Conectando com o banco local   'postgresql://user:password@host/database' 
-conn_string = 'postgresql://user:password@host/database' 
+conn_string = 'postgresql://user:password@host/database' # Substituir credenciais
 conn = psycopg2.connect(conn_string)
 cursor = conn.cursor() 
 
@@ -18,15 +18,12 @@ cursor = conn.cursor()
 db = create_engine(conn_string)
 conn = db.connect()
 
-
 print("- Simples")
 df_simples = pd.read_csv("D:cnpj\export_simples.csv", sep=';')
 df_simples = df_simples.replace(0, np.nan)
 for col in df_simples.columns:
     if 'Data' in col:
         df_simples[col] = pd.to_datetime(df_simples[col].astype(str), exact=False, errors='ignore', format='%Y%m%d')
-# print(df_simples["Data de opção pelo simples"])
-# print(df_simples["Data de exclusão do simples"])
 print(df_simples)
 
 df_estabelecimentos_1 = pd.read_csv("D:\cnpj\export_estabelecimentos.csv", sep=';')
@@ -61,7 +58,7 @@ mun=0
 df_simples_selecao = df_estabelecimentos_1.loc[(df_estabelecimentos_1['CNPJ'].isin(df_simples['CNPJ']))]
 
 ## filtrar os cnpjs que não são indústria: indústria inicia com 05-33
-df_simples_selecao = df_simples_selecao.loc[(df_simples_selecao['CNAE'] >= 5000000) & (df_simples_selecao['CNAE'] < 34000000)]                                         
+df_simples_selecao = df_simples_selecao.loc[(df_simples_selecao['CNAE'] >= 500000) & (df_simples_selecao['CNAE'] < 3400000)]                                         
 
 ## desconsiderar as situações cadastrais 1, 4 e 8 por serem incosistentes 
 df_simples_usar = df_simples_selecao.loc[df_simples_selecao['Situação Cadastral'].isin([2,3])]
@@ -75,9 +72,7 @@ for date in datas:
     aux_excluir = df_simples_usar.loc[
         (df_simples_usar['Situação Cadastral'] == 3) & (df_simples_usar['Data Situação Cadastral'] < date)]
 
-    
     simples_usar = df_simples_limpo.loc[~df_simples_limpo['CNPJ'].isin(aux_excluir['CNPJ'])]
-
 
     aux_simples = simples_usar.loc[simples_usar['Data de opção pelo simples'] <= date]
     aux_simples = aux_simples.loc[(aux_simples['Data de exclusão do simples'] > date) | (aux_simples['Data de exclusão do simples'] == np.nan)] ## pode ser que nao tenha data de exclusão
@@ -105,7 +100,6 @@ for date in datas:
     #     print("Atualizou o dataframe")
     #     ativo=pd.DataFrame({'Data': [date], 'MEI_ativo': [mun_mei],'SIMPLES_ativo': [mun_simples], 'ID_Município': [mun]})
     #     ativos=ativos.append(ativo)
-
 
 
 print("Salvando no banco de dados")
