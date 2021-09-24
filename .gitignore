@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 .ftr
+.csv
 
 # C extensions
 *.so
