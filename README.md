@@ -40,3 +40,16 @@ ou Simples, em cada município brasileiro
 4. Qual o número de CNPJ que surgiram do grupo de educação superior, entre 2015 e 2021, discriminado por ano, em cada estado brasileiro?
 5. Qual a classe de CNAE com o maior capital social médio no Brasil no último ano?
 6. Qual a média do capital social das empresas de pequeno porte por natureza jurídica no último ano?
+
+### Solução
+
+O arquivo [resolve.py](resolve.py) lê todos os arquivos CSV e os salva como feather (.ftr). Feather é um formato de arquivo portátil para armazenar Dataframes (de linguagens como Python ou R). Tanto a leitura dos CSVs (pd.read_csv) quanto a exportação para feather (pd.to_feather) foi feita utilizando a biblioteca pandas.
+
+Esse tipo de arquivo foi utilizado para otimizar a leitura dos dados. Os arquivos .ftr eram significativamente menores que os CSV. Apenas na tabela estabelecimentos não foi possível utilizar esse formato.
+
+A pasta [solução](solução) contém o script principal que vai ler os dados e resolver cada uma das questões, [load_solution.py](solução/load_solution.py). Nos demais estão as funções que resolvem cada uma das questões.
+
+Cada método recebe os DataFrames com os dados necessários e retornam um ou dois DataFrames de resposta. Ao final de cada solução, os DataFrames resultantes são exportados para arquivos CSVs.
+
+Esses arquivos serviram para alimentar o banco de dados, que serviu como fonte de dados para a solução final no PowerBI.
+
