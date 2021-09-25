@@ -26,7 +26,7 @@ Para isso, foi implementada uma arquitetura em Docker com três containers:
 * PostgreSQL: container com o banco de dados;
 * pgAdmin: container para gerenciamento do banco.
 
-Mais detalhes de cada um dos serviços estão descritos no arquivo [docker-compose.yml](src/docker/docker-compose.yml).
+Mais detalhes de cada um dos serviços estão descritos no arquivo [docker-compose.yml](docker/docker-compose.yml).
 
 O container Python lê os arquivos CSV da etapa anterior, faz alterações pertinentes e salva os dados no banco. Os arquivos CSV exportados foram salvos na pasta docker/src/data_csv para leitura do script.
 
