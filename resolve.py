@@ -18,54 +18,54 @@ print("Lê arquivos CSV:")
 path = 'src/docker/src/data_csv/'
 
 
-# print("- Porte da Empresa")
-# porte_empresa = {
-#     "Porte da Empresa": [1, 2, 3, 5],
-#     "Descrição Porte": ['Não informado', 'Micro empresa', 'Empresa de pequeno porte', 'Demais']
-# }
-# df_porte_empresa = pd.DataFrame(porte_empresa)
-# df_porte_empresa.to_feather('data_feather/porte.ftr')
+print("- Porte da Empresa")
+porte_empresa = {
+    "Porte da Empresa": [1, 2, 3, 5],
+    "Descrição Porte": ['Não informado', 'Micro empresa', 'Empresa de pequeno porte', 'Demais']
+}
+df_porte_empresa = pd.DataFrame(porte_empresa)
+df_porte_empresa.to_feather('data_feather/porte.ftr')
 
-# print("- Matriz/Filial")
-# matriz = {
-#     "Identificador Matriz/Filial": [1, 2],
-#     "Matriz/Filial": ['Matriz', 'Filial']
-# }
-# df_matriz = pd.DataFrame(matriz)
-# df_matriz.to_feather('data_feather/matriz.ftr')
+print("- Matriz/Filial")
+matriz = {
+    "Identificador Matriz/Filial": [1, 2],
+    "Matriz/Filial": ['Matriz', 'Filial']
+}
+df_matriz = pd.DataFrame(matriz)
+df_matriz.to_feather('data_feather/matriz.ftr')
 
-# print("- Situação")
-# situacao = {
-#     "Código da Situação Cadastral": [1, 2, 3, 4, 8],
-#     "Situação Cadastral": ['Nula', 'Ativa', 'Suspensa', 'Inapta', 'Baixada']
-# }
-# df_situacao = pd.DataFrame(situacao)
-# df_situacao.to_feather('data_feather/situacao.ftr')
+print("- Situação")
+situacao = {
+    "Código da Situação Cadastral": [1, 2, 3, 4, 8],
+    "Situação Cadastral": ['Nula', 'Ativa', 'Suspensa', 'Inapta', 'Baixada']
+}
+df_situacao = pd.DataFrame(situacao)
+df_situacao.to_feather('data_feather/situacao.ftr')
 
-# print("- CNAE")
-# df_cnae = pd.read_csv(path+"/export_CNAE.csv", sep=';')
-# df_cnae.to_feather('data_feather/cnae.ftr')
+print("- CNAE")
+df_cnae = pd.read_csv(path+"/export_CNAE.csv", sep=';')
+df_cnae.to_feather('data_feather/cnae.ftr')
 
-# print("- Municípios")
-# df_municipios = pd.read_csv(path+"export_municipios.csv", sep=';')
-# df_municipios.to_feather('data_feather/municipios.ftr')
+print("- Municípios")
+df_municipios = pd.read_csv(path+"export_municipios.csv", sep=';')
+df_municipios.to_feather('data_feather/municipios.ftr')
 
-# print("- Natureza Jurídica")
-# df_nat_juridica = pd.read_csv(path+"export_natjuridica.csv", sep=';')
-# df_nat_juridica.to_feather('data_feather/natjuridica.ftr')
+print("- Natureza Jurídica")
+df_nat_juridica = pd.read_csv(path+"export_natjuridica.csv", sep=';')
+df_nat_juridica.to_feather('data_feather/natjuridica.ftr')
 
-# print("- Simples")
-# df_simples = pd.read_csv(path+"export_simples.csv", sep=';')
-# df_simples = df_simples.replace(0, np.nan)
-# for col in df_simples.columns:
-#     if 'Data' in col:
-#         df_simples[col] = pd.to_datetime(df_simples[col].astype(str), exact=False, errors='ignore', format='%Y%m%d')
-# df_simples.to_feather('data_feather/simples.ftr')
+print("- Simples")
+df_simples = pd.read_csv(path+"export_simples.csv", sep=';')
+df_simples = df_simples.replace(0, np.nan)
+for col in df_simples.columns:
+    if 'Data' in col:
+        df_simples[col] = pd.to_datetime(df_simples[col].astype(str), exact=False, errors='ignore', format='%Y%m%d')
+df_simples.to_feather('data_feather/simples.ftr')
 
-# print("- Empresas")
-# df_empresas = pd.read_csv(path+"export_empresas.csv", sep=';')
-# df_empresas.drop("Razão Social", axis=1, inplace=True)
-# df_empresas.to_feather('data_feather/empresas.ftr')
+print("- Empresas")
+df_empresas = pd.read_csv(path+"export_empresas.csv", sep=';')
+df_empresas.drop("Razão Social", axis=1, inplace=True)
+df_empresas.to_feather('data_feather/empresas.ftr')
 
 print("- Estabelecimentos")
 # Read CSV
@@ -110,11 +110,6 @@ print(len(df_estabelecimentos))
 
 df_estabelecimentos.to_feather('data_feather/estabelecimentos.ftr')
 df_estabelecimentos.to_csv('data_feather/estabelecimentos.csv', index = False, header=True, sep=';')
-
-
-
-
-
 
 
 print(" -------- END -------- ")
