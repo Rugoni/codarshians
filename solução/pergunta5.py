@@ -28,7 +28,7 @@ def resolve_pergunta_5(df_estabelecimentos, df_empresas):
     
     print(df_estabelecimentos.columns)
     print(df_capital.columns)
-    return True
+    
     #incluir a coluna de CNAE apenas para os campos comuns de CNPJ
     df_capital = (pd.merge(df_capital, df_estabelecimentos, how='inner', on='CNPJ'))
     df_capital = df_capital.drop(columns=(['Situação Cadastral','Data Situação Cadastral','Data de Início atividade','UF','ID_Município']))
