@@ -5,6 +5,8 @@ def resolve_pergunta_1(df_municipios, df_estabelecimentos, df_simples):
     
     # Filtrar os CNPJs da tabela estabelecimento e que estão na tabela simples
     df_simples_selecao = df_estabelecimentos.loc[(df_estabelecimentos['CNPJ'].isin(df_simples['CNPJ']))]
+    # Tira CNPJs do Exterior: ID_Município == 9707
+    df_simples_selecao = df_simples_selecao.loc[~(df_simples_selecao["ID_Município"].isin([9707]))]
 
     # Filtrar os CNAEs que são indústria: indústria inicia com 05-33
     df_simples_usar = df_simples_selecao.loc[(df_simples_selecao['CNAE'] >= 500000) & (df_simples_selecao['CNAE'] < 3400000)]

@@ -2,6 +2,9 @@ import pandas as pd
 
 def resolve_pergunta_5(df_estabelecimentos, df_empresas):
 
+    # Tira CNPJs do Exterior: ID_Município == 9707
+    df_estabelecimentos = df_estabelecimentos.loc[~(df_estabelecimentos["ID_Município"].isin([9707]))]
+    
     datas = '01-01-2021'
     datas= pd.to_datetime(datas)
 
