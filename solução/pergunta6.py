@@ -18,7 +18,9 @@ def resolve_pergunta_6(df_estabelecimentos_1, df_empresas):
 
     df_estabelecimentos_1 = df_estabelecimentos_1.loc[~df_estabelecimentos_1['CNPJ'].isin(df_cnpj_excluir['CNPJ'])]
 
-
+    # Retira empresas que tem erro no valor do Capital Social
+    df_empresas = df_empresas.loc[~(df_empresas['Capital Social'].apply(lambda x: all([n=='9' or n==',' for n in x])))]
+    
     ## filtrar a tabela de empresas pelos cnpjs que se mantém ativos no último ano:
     df_pequena=df_empresas.loc[df_empresas['CNPJ'].isin(df_estabelecimentos_1['CNPJ'])]
 
