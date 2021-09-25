@@ -43,7 +43,7 @@ ou Simples, em cada município brasileiro
 
 ### Solução
 
-O arquivo [resolve.py](resolve.py) lê todos os arquivos CSV e os salva como feather (.ftr). Feather é um formato de arquivo portátil para armazenar Dataframes (de linguagens como Python ou R). Tanto a leitura dos CSVs (pd.read_csv) quanto a exportação para feather (pd.to_feather) foi feita utilizando a biblioteca pandas.
+O arquivo [read_data_and_save_feather.py](read_data_and_save_feather.py) lê todos os arquivos CSV e os salva como feather (.ftr). Feather é um formato de arquivo portátil para armazenar DataFrames (de linguagens como Python ou R). Tanto a leitura dos CSVs (pd.read_csv) quanto a exportação para feather (pd.to_feather) foi feita utilizando a biblioteca pandas.
 
 Esse tipo de arquivo foi utilizado para otimizar a leitura dos dados. Os arquivos .ftr eram significativamente menores que os CSV. Apenas na tabela estabelecimentos não foi possível utilizar esse formato.
 
