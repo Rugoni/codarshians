@@ -4,8 +4,10 @@ import pandas as pd
 def resolve_pergunta_4(df_estabelecimentos):
 
     # Filtrar os CNAEs que são grupo de educação superior: inicia com 853
-    df_novo_selecao = df_estabelecimentos.loc[(df_estabelecimentos['CNAE'] >= 8530000) & (df_estabelecimentos['CNAE'] < 8540000)]
-
+    df_simples_selecao = df_estabelecimentos.loc[(df_estabelecimentos['CNAE'] >= 8530000) & (df_estabelecimentos['CNAE'] < 8540000)]
+    # Tira CNPJs do Exterior: ID_Município == 9707
+    df_novo_selecao =  df_simples_selecao.loc[~(df_simples_selecao["ID_Município"].isin([9707]))]
+    
     novos_educa = pd.DataFrame()
 
     datas = pd.date_range(start='01/01/2015', end='07/01/2021', freq='Y') 
